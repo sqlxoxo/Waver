@@ -3,25 +3,29 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Авторизация</title>
+		<title>Вход</title>
 		{% load static %}
 		<link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
+		<!-- Путь к вашим стилям -->
 	</head>
 	<body>
-		<div class="container">
-			<h2>Авторизация</h2>
-			<form method="POST">
-				{% csrf_token %}
-				<input
-					type="text"
-					name="username"
-					placeholder="Имя пользователя"
-					required
-				/>
-				<input type="password" name="password" placeholder="Пароль" required />
-				<button type="submit">Войти</button>
-			</form>
-			<p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь</a></p>
-		</div>
+		<form method="POST">
+			{% csrf_token %}
+			<h2 class="login-title">Вход</h2>
+			<input
+				type="text"
+				name="username"
+				placeholder="Имя пользователя"
+				required
+			/>
+			<input type="password" name="password" placeholder="Пароль" required />
+			<button type="submit">Войти</button>
+
+			<div class="login-message">
+				<p>
+					Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a>
+				</p>
+			</div>
+		</form>
 	</body>
 </html>

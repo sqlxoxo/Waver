@@ -1,12 +1,8 @@
-# core/urls.py
 from django.urls import path
-from django.contrib.auth import views as auth_views
-from .views import register, edit_profile
+from .views import home, register, login  # Импортируйте необходимые представления
 
 urlpatterns = [
-   path('register/', register, name="register"),
-   path('login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
-   path('profile/edit/', edit_profile, name='edit_profile'),
-   path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-   
+   path('', home, name='home'),  # Главная страница
+   path('register/', register, name='register'),  # Страница регистрации
+   path('login/', login, name='login'),  # Страница логина
 ]

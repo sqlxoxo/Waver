@@ -1,38 +1,35 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
-from .forms import CustomUserCreationForm
-from django.contrib.auth.decorators import login_required
-from .forms import UserProfileForm
-from .models import UserProfile
+from .forms import UserRegistrationForm, UserLoginForm
+
 
 def register(request):
    if request.method == 'POST':
-      form = CustomUserCreationForm(request.POST)
+      form = UserRegistrationForm(request.POST)
       if form.is_valid():
-            user = form.save()
-            # Создание UserProfile после успешной регистрации
-            UserProfile.objects.create(user=user)
-            return redirect('login')  # Перенаправление на страницу входа
+         user = form.save()
+         login(request, user)  # Вход пользователя после успешной регистрации
+         return redirect('home')  # Переход на главную страницу
    else:
-      form = CustomUserCreationForm()
+      form = UserRegistrationForm()
    return render(request, 'core/register.html', {'form': form})
 
-
-@login_required
-def edit_profile(request):
-   profile = request.user.userprofile
+def login(request):
    if request.method == 'POST':
-      form = UserProfileForm(request.POST, instance=profile)
+      form = UserLoginForm(request.POST)
       if form.is_valid():
-            form.save()
-            messages.success(request, 'Профиль успешно обновлён!')
-            return redirect('edit_profile')  # Измените на URL вашего профиля
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+               auth_login(request, user)
+               return redirect('home')  # Перенаправление на главную страницу
+            else:
+               messages.error(request, 'Неверные учетные данные.')
    else:
-      form = UserProfileForm(instance=profile)
-   return render(request, 'core/edit_profile.html', {'form': form})
+      form = UserLoginForm()
+   return render(request, 'core/login.html', {'form': form})
 
-
-@login_required  # Ограничим доступ только для авторизованных пользователей
 def home(request):
    return render(request, 'core/home.html')

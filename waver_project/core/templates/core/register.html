@@ -6,15 +6,24 @@
 		<title>Регистрация</title>
 		{% load static %}
 		<link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
+		<!-- Путь к вашим стилям -->
 	</head>
 	<body>
-		<div class="container">
-			<h2>Регистрация</h2>
-			<form method="POST">
-				{% csrf_token %} {{ form.as_p }}
-				<button type="submit">Зарегистрироваться</button>
-			</form>
-			<p>Уже есть аккаунт? <a href="{% url 'login' %}">Войдите</a></p>
-		</div>
+		<form method="POST">
+			{% csrf_token %}
+			<h2 class="registration-title">Регистрация</h2>
+			<input
+				type="text"
+				name="username"
+				placeholder="Имя пользователя"
+				required
+			/>
+			<input type="password" name="password" placeholder="Пароль" required />
+			<button type="submit">Зарегистрироваться</button>
+
+			<div class="account-message">
+				<p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+			</div>
+		</form>
 	</body>
 </html>

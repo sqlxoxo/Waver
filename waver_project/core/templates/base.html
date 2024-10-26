@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Waver</title>
+		<title>{% block title %}Мое приложение{% endblock %}</title>
 		{% load static %}
+		<!-- Загружаем тег static -->
 		<link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+		<!-- Путь к вашим стилям -->
 	</head>
 	<body>
-		<nav>
-			<ul>
-				<li><a href="{% url 'home' %}">Главная</a></li>
-				<li><a href="{% url 'edit_profile' %}">Профиль</a></li>
-				<li><a href="{% url 'logout' %}">Выход</a></li>
-			</ul>
-		</nav>
-		<div class="container">{% block content %} {% endblock %}</div>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="{% url 'home' %}">Главная</a></li>
+					<li><a href="{% url 'register' %}">Регистрация</a></li>
+					<li><a href="{% url 'login' %}">Логин</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>{% block content %}{% endblock %}</main>
+
+		<footer>
+			<p>&copy; 2024 Мое приложение</p>
+		</footer>
 	</body>
 </html>
