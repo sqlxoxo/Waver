@@ -55,8 +55,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'waver_db',
-        'USER': 'waver_user',  # замените на имя вашего пользователя
-        'PASSWORD': '277353',  # замените на ваш пароль
+        'USER': 'waver_user',  
+        'PASSWORD': '277353',  
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

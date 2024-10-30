@@ -1,10 +1,40 @@
-{% extends 'base.html' %}
-<!-- Наследуем от base.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Waver - Главная</title>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+	</head>
+	<body>
+		<div class="container">
+			<!-- Боковая панель со списком друзей -->
+			<aside class="sidebar">
+				<h2>Друзья</h2>
+				<ul id="friends-list">
+					<!-- Здесь будут отображаться друзья -->
+				</ul>
+				<button onclick="addFriend()">Добавить друга</button>
+			</aside>
 
-{% block title %}Главная страница{% endblock %}
-<!-- Переопределяем заголовок -->
-
-{% block content %}
-<h1>Добро пожаловать на главную страницу!</h1>
-<p>Это ваше приложение.</p>
-{% endblock %}
+			<!-- Основная область с чатами и группами -->
+			<main class="main-content">
+				<div class="header">
+					<input
+						type="text"
+						placeholder="Поиск..."
+						id="search"
+						oninput="searchUser()"
+					/>
+					<button onclick="openSettings()">Настройки профиля</button>
+				</div>
+				<div class="chat-section">
+					<h2>Чаты и Группы</h2>
+					<ul id="chat-list">
+						<!-- Список чатов и групп -->
+					</ul>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>
