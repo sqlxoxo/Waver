@@ -35,7 +35,7 @@ def login(request):
    return render(request, 'core/login.html', {'form': form})
 
 def home(request):
-   return render(request, 'core/home.html')
+   return render(request, 'home.html')
 
 def send_friend_request(request, to_user_id):
    to_user = get_object_or_404(CustomUser, id=to_user_id)

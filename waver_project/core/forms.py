@@ -17,7 +17,7 @@ class UserRegistrationForm(forms.ModelForm):
       cleaned_data = super().clean()
       password = cleaned_data.get("password")
       password_confirm = cleaned_data.get("password_confirm")
-        
+      
       if password != password_confirm:
             raise forms.ValidationError("Пароли не совпадают.")
 
