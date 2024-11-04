@@ -1,0 +1,11 @@
+<form method="POST" action="{% url 'create_group' %}">
+	{% csrf_token %}
+	<input type="text" name="group_name" placeholder="Enter group name" />
+	<button type="submit">Create Group</button>
+</form>
+
+<ul>
+	{% for group in groups %}
+	<li>{{ group.name }}</li>
+	{% endfor %}
+</ul>
