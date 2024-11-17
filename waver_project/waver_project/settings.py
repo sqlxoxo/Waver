@@ -26,6 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'main',
+    'friends',
+    'messaging',
 ]
 
 MIDDLEWARE = [
@@ -43,8 +46,10 @@ ROOT_URLCONF = 'waver_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            BASE_DIR / 'templates',  # Для глобальных шаблонов, если они есть
+        ],
+        'APP_DIRS': True,  # Это позволяет искать шаблоны внутри директории templates каждого приложения
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -56,6 +61,8 @@ TEMPLATES = [
     },
 ]
 
+
+
 WSGI_APPLICATION = 'waver_project.wsgi.application'
 
 
@@ -64,8 +71,12 @@ WSGI_APPLICATION = 'waver_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'waver_database',
+        'USER': 'waver_db_user',
+        'PASSWORD': '1598753',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -104,11 +115,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'auth.User'  # Использование стандартной модели
+AUTH_USER_MODEL = 'accounts.CustomUser'

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Waver - Home</title>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="sidebar">
+				<div class="sidebar-header">
+					<img src="{% static 'images/logo.png' %}" alt="Logo" class="logo" />
+				</div>
+				<nav>
+					<ul>
+						<li><a href="#groups">Groups</a></li>
+						<li><a href="#friends">Friends</a></li>
+						<li><a href="#chat">Chat</a></li>
+					</ul>
+				</nav>
+				<div class="sidebar-footer">
+					<button class="logout-btn">Logout</button>
+				</div>
+			</div>
+
+			<div class="main-content">
+				<div id="groups" class="content-section">
+					<h2>Groups</h2>
+					<p>Your groups will appear here...</p>
+				</div>
+				<div id="friends" class="content-section">
+					<h2>Friends</h2>
+					<p>Your friends will appear here...</p>
+				</div>
+				<div id="chat" class="content-section">
+					<h2>Chat</h2>
+					<p>Your chat history will appear here...</p>
+				</div>
+			</div>
+			{% for user in users %}
+			<div class="friend">
+				<p>{{ user.username }}</p>
+				{% if user != request.user %} {% if user in request.user.friends.all %}
+				<a href="{% url 'remove_friend' user.id %}" class="btn"
+					>Remove Friend</a
+				>
+				{% else %}
+				<a href="{% url 'add_friend' user.id %}" class="btn">Add Friend</a>
+				{% endif %} {% endif %}
+			</div>
+			{% endfor %} {% for friend in request.user.friends.all %}
+			<div class="friend">
+				<p>{{ friend.username }}</p>
+				<a href="{% url 'chat' friend.id %}" class="btn">Message</a>
+			</div>
+			{% endfor %}
+		</div>
+		<script src="{% static 'js/main.js' %}"></script>
+	</body>
+</html>
