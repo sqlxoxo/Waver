@@ -1,14 +1,15 @@
-<!-- templates/accounts/login.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>Login</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Вхід</title>
 	</head>
 	<body>
-		<h2>Login</h2>
-		<form method="POST">
+		<h2>Вхід</h2>
+		<form method="post">
 			{% csrf_token %} {{ form.as_p }}
-			<button type="submit">Login</button>
+			<button type="submit">Увійти</button>
 		</form>
 	</body>
 </html>

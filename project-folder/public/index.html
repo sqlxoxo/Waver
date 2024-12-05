@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord-like Frontend</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <aside class="sidebar">
+            <h2>Servers</h2>
+            <ul id="server-list">
+                <!-- Список серверов -->
+            </ul>
+        </aside>
+        <main class="chat-window">
+            <div id="messages"></div>
+            <form id="chat-form">
+                <input type="text" id="message-input" placeholder="Type a message" autocomplete="off" />
+                <button type="submit">Send</button>
+            </form>
+        </main>
+        <aside class="members-list">
+            <h3>Members</h3>
+            <ul id="member-list">
+                <!-- Список участников -->
+            </ul>
+        </aside>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

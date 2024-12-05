@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#app {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar, .members-list {
+    width: 15%;
+    background-color: #2c2f33;
+    color: #fff;
+    padding: 10px;
+}
+
+.chat-window {
+    flex-grow: 1;
+    background-color: #36393f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#messages {
+    flex-grow: 1;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+#chat-form {
+    display: flex;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+button {
+    background-color: #7289da;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+}
